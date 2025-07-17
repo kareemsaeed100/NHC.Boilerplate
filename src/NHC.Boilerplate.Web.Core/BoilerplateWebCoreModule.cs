@@ -4,13 +4,14 @@ using Abp.AspNetCore.SignalR;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.Configuration;
-using NHC.Boilerplate.Authentication.JwtBearer;
-using NHC.Boilerplate.Configuration;
-using NHC.Boilerplate.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using NHC.Boilerplate.Authentication.JwtBearer;
+using NHC.Boilerplate.Configuration;
+using NHC.Boilerplate.EntityFrameworkCore;
+using NHC.Boilerplate.Integration;
 using System;
 using System.Text;
 
@@ -20,7 +21,8 @@ namespace NHC.Boilerplate
          typeof(BoilerplateApplicationModule),
          typeof(BoilerplateEntityFrameworkModule),
          typeof(AbpAspNetCoreModule)
-        , typeof(AbpAspNetCoreSignalRModule)
+        , typeof(AbpAspNetCoreSignalRModule),
+        typeof(NHCBoilerplateIntegrationModule)
      )]
     public class BoilerplateWebCoreModule : AbpModule
     {

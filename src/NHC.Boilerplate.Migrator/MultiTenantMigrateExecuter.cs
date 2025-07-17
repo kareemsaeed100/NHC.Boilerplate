@@ -6,7 +6,6 @@ using Abp.Extensions;
 using Abp.MultiTenancy;
 using Abp.Runtime.Security;
 using NHC.Boilerplate.EntityFrameworkCore;
-using NHC.Boilerplate.EntityFrameworkCore.Seed;
 using NHC.Boilerplate.MultiTenancy;
 using System;
 using System.Collections.Generic;
@@ -59,7 +58,7 @@ public class MultiTenantMigrateExecuter : ITransientDependency
 
         try
         {
-            _migrator.CreateOrMigrateForHost(SeedHelper.SeedHostDb);
+            // _migrator.CreateOrMigrateForHost(SeedHelper.SeedHostDb);
         }
         catch (Exception ex)
         {

@@ -2,9 +2,9 @@
 using Abp.Domain.Uow;
 using Abp.EntityFrameworkCore.Uow;
 using Abp.MultiTenancy;
+using Microsoft.EntityFrameworkCore;
 using NHC.Boilerplate.EntityFrameworkCore.Seed.Host;
 using NHC.Boilerplate.EntityFrameworkCore.Seed.Tenants;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Transactions;
 
@@ -14,15 +14,17 @@ public static class SeedHelper
 {
     public static void SeedHostDb(IIocResolver iocResolver)
     {
-        WithDbContext<BoilerplateDbContext>(iocResolver, SeedHostDb);
+        //WithDbContext<BoilerplateDbContext>(iocResolver, SeedHostDb);
+        WithDbContext<BoilerplateDbContext>(iocResolver, context => SeedHostDb(context, iocResolver));
+
     }
 
-    public static void SeedHostDb(BoilerplateDbContext context)
+    public static void SeedHostDb(BoilerplateDbContext context, IIocResolver iocResolver)
     {
         context.SuppressAutoSetTenantId = true;
 
         // Host seed
-        new InitialHostDbBuilder(context).Create();
+        new InitialHostDbBuilder(context, iocResolver).Create();
 
         // Default tenant seed (in host database).
         new DefaultTenantBuilder(context).Create();

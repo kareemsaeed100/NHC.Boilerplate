@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NHC.Boilerplate.Application\NHC.Boilerplate.Application.csproj" />
     <ProjectReference Include="..\NHC.Boilerplate.EntityFrameworkCore\NHC.Boilerplate.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\NHC.Boilerplate.Integration\NHC.Boilerplate.Integration.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
