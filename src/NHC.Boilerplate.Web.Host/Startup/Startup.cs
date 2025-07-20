@@ -3,9 +3,8 @@ using Abp.AspNetCore.Mvc.Antiforgery;
 using Abp.AspNetCore.SignalR.Hubs;
 using Abp.Castle.Logging.Log4Net;
 using Abp.Extensions;
-using NHC.Boilerplate.Configuration;
-using NHC.Boilerplate.Identity;
 using Castle.Facilities.Logging;
+using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using NHC.Boilerplate.BackgroundJob;
+using NHC.Boilerplate.Configuration;
+using NHC.Boilerplate.Identity;
 using System;
 using System.IO;
 using System.Linq;
@@ -47,6 +49,11 @@ namespace NHC.Boilerplate.Web.Host.Startup
             AuthConfigurer.Configure(services, _appConfiguration);
 
             services.AddSignalR();
+
+            services.AddHangfire(config =>
+                config.UseSqlServerStorage(_appConfiguration.GetConnectionString("Default")));
+
+            services.AddHangfireServer();
 
             // Configure CORS for angular2 UI
             services.AddCors(
@@ -95,6 +102,12 @@ namespace NHC.Boilerplate.Web.Host.Startup
             app.UseAuthorization();
 
             app.UseAbpRequestLocalization();
+
+
+            app.UseHangfireDashboard("/hangfire");
+            // app.UseHangfireServer();    // Deprecated 1.7.30
+
+            HangfireJobRegistrar.Register();
 
             app.UseEndpoints(endpoints =>
             {

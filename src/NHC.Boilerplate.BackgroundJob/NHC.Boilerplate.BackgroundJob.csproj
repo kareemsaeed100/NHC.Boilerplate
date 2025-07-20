@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Abp" Version="10.0.0" />
+		<PackageReference Include="Abp.HangFire" Version="9.4.1" />
+		<PackageReference Include="Hangfire" Version="1.8.20" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\NHC.Boilerplate.Application\NHC.Boilerplate.Application.csproj" />
+	</ItemGroup>
+
+
+</Project>

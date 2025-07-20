@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
@@ -28,9 +28,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NHC.Boilerplate.Application\NHC.Boilerplate.Application.csproj" />
+    <ProjectReference Include="..\NHC.Boilerplate.BackgroundJob\NHC.Boilerplate.BackgroundJob.csproj" />
     <ProjectReference Include="..\NHC.Boilerplate.Web.Core\NHC.Boilerplate.Web.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
+	  <PackageReference Include="Abp.HangFire" Version="9.4.1" />
+	  <PackageReference Include="Hangfire" Version="1.8.20" />
     <PackageReference Include="Abp.Castle.Log4Net" Version="10.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>
