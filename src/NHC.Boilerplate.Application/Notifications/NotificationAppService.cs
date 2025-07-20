@@ -1,10 +1,12 @@
 ﻿using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace NHC.Boilerplate.Notifications.Dto;
 
+[AbpAuthorize]
 [Route("api/notifications")]
 public class NotificationAppService(NotificationManager _notificationManager) : BoilerplateAppServiceBase
 {
